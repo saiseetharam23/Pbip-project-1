@@ -1,0 +1,4 @@
+
+
+EVALUATE
+    ROW("Total Volume", SUM(Transaction_Data_250k[Amount]))

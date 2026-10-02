@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "f0dd9b578b478b2a991a",
+  "displayName": "Holiday",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "pageBinding": {
+    "name": "17eeb3c715b603c2aa09",
+    "type": "Default",
+    "parameters": []
+  }
+}

@@ -1,0 +1,45 @@
+table sai-imp
+	lineageTag: 4d7c6055-a7cc-470a-a862-da17a7824a5d
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 614334ff-1f78-4527-bf6c-cc9d900c3682
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 82317413-b3f5-492f-bcec-126038fb0ce2
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: int64
+		formatString: 0
+		lineageTag: aed1ba0f-c3ef-41f9-9e95-98c167dde032
+		summarizeBy: none
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sai-imp = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("localhost"),
+				    test_db = Source{[Name="test_db"]}[Data],
+				    dbo_sai = test_db{[Schema="dbo",Item="sai"]}[Data]
+				in
+				    dbo_sai
+
+	changedProperty = Name
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

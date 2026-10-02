@@ -1,0 +1,34 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["emp","Transaction_Data_250k","p_state","notepd","sai-imp","ram_dq","Test","Cusmtomer_data","publicholidays"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Transaction_Data_250k
+ref table emp
+ref table notepd
+ref table sai-imp
+ref table ram_dq
+ref table Test
+ref table Cusmtomer_data
+ref table DateTableTemplate_3ea5b35b-1957-4a69-b7cf-da5d210d5288
+ref table LocalDateTable_bfcb79ce-5d14-4596-8e4e-7002ef3ae262
+ref table Parameter
+ref table publicholidays
+ref table LocalDateTable_98c29925-be18-4932-9bfa-fa9b65dd668c
+
+ref role Wales
+ref role England
+ref role India
+
+ref cultureInfo en-US
+

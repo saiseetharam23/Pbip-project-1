@@ -1,0 +1,247 @@
+table Transaction_Data_250k
+	lineageTag: b301fdc5-7e72-4cab-a24a-6b9c49ee54e5
+
+	column Transaction_ID
+		dataType: string
+		lineageTag: 6993c085-c424-4f96-b12c-5c61c4669158
+		summarizeBy: none
+		sourceColumn: Transaction_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_ID
+		dataType: string
+		lineageTag: 7d7306cc-c371-4333-9c21-b924928955d6
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Card_ID
+		dataType: string
+		lineageTag: be0ec78f-dbbb-4c67-8579-a860dd002796
+		summarizeBy: none
+		sourceColumn: Card_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Merchant_ID
+		dataType: string
+		lineageTag: cf05ad94-9f09-423b-9130-09a056d174fe
+		summarizeBy: none
+		sourceColumn: Merchant_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Transaction_Date
+		dataType: double
+		lineageTag: b8cdc569-eaf8-474e-9a90-5803b2eec555
+		summarizeBy: sum
+		sourceColumn: Transaction_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Payment_Method
+		dataType: string
+		lineageTag: f6b8dee1-1fd7-40c8-852f-c8a3748583f1
+		summarizeBy: none
+		sourceColumn: Payment_Method
+
+		annotation SummarizationSetBy = Automatic
+
+	column Transaction_Channel
+		dataType: string
+		lineageTag: ee98b9eb-924b-4e07-b058-0accabf58cd7
+		summarizeBy: none
+		sourceColumn: Transaction_Channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Device_Type
+		dataType: string
+		lineageTag: 0cec3268-307f-4285-b25d-e99d953a0819
+		summarizeBy: none
+		sourceColumn: Device_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Transaction_Status
+		dataType: string
+		lineageTag: 99a4e545-751c-4651-97ff-911c4a212d39
+		summarizeBy: none
+		sourceColumn: Transaction_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_International
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 700f1b29-1e26-4adf-adf3-6f1b17a1d33a
+		summarizeBy: none
+		sourceColumn: Is_International
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fraud_Reason
+		dataType: string
+		lineageTag: 3b94e558-3e7b-4666-9517-8cadacb3e26b
+		summarizeBy: none
+		sourceColumn: Fraud_Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column Merchant_Risk_Level
+		dataType: string
+		lineageTag: f8e6139d-d0dc-47ca-87fa-74c51b857caa
+		summarizeBy: none
+		sourceColumn: Merchant_Risk_Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column Merchant_Category
+		dataType: string
+		lineageTag: cb44e7a8-6aa8-4ead-8e71-ac43b829d432
+		summarizeBy: none
+		sourceColumn: Merchant_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_State
+		dataType: string
+		lineageTag: 5b0e52e1-0560-49ca-8a6c-dca39a3c0bab
+		summarizeBy: none
+		sourceColumn: Customer_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_City
+		dataType: string
+		lineageTag: 6a7ba4e5-1d04-43cc-9cf9-fdd2eed87632
+		summarizeBy: none
+		sourceColumn: Customer_City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Merchant_State
+		dataType: string
+		lineageTag: 1ca1b224-a149-49da-95f3-e71ed8e20d41
+		summarizeBy: none
+		sourceColumn: Merchant_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Merchant_City
+		dataType: string
+		lineageTag: 0794c9e2-f809-4548-a2c0-6778ba6a776c
+		summarizeBy: none
+		sourceColumn: Merchant_City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 68b3ae9c-632c-48d4-98a3-639774e6afda
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amount in Rupee'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b72b3f7-f348-44a4-946d-1d9dc5defb3a
+		summarizeBy: sum
+		sourceColumn: Amount in Rupee
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amount in Paisa'
+		dataType: int64
+		formatString: 0
+		lineageTag: 79acdf64-8c16-4317-8fc9-f42a892ddffa
+		summarizeBy: sum
+		sourceColumn: Amount in Paisa
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Transaction_Data_250k = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Zidio project\archive\Transaction_Data_250k.csv"),[Delimiter=",", Columns=20, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Transaction_ID", type text}, {"Customer_ID", type text}, {"Card_ID", type text}, {"Merchant_ID", type text}, {"Transaction_Date", type date}, {"Transaction_Time", type time}, {"Transaction_Amount", type number}, {"Payment_Method", type text}, {"Transaction_Channel", type text}, {"Device_Type", type text}, {"Transaction_Status", type text}, {"Is_International", Int64.Type}, {"Fraud_Flag", Int64.Type}, {"Fraud_Reason", type text}, {"Merchant_Risk_Level", type text}, {"Merchant_Category", type text}, {"Customer_State", type text}, {"Customer_City", type text}, {"Merchant_State", type text}, {"Merchant_City", type text}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Is_International", type logical}}),
+				    #"Split Column by Positions" = Table.SplitColumn(Table.TransformColumnTypes(#"Changed Type1", {{"Fraud_Flag", type text}}, "en-IN"), "Fraud_Flag", Splitter.SplitTextByPositions({2, 4}), {"Fraud_Flag.1", "Fraud_Flag.2"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Positions",{{"Fraud_Flag.1", type text}, {"Fraud_Flag.2", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type2",{"Fraud_Flag.2", "Fraud_Flag.1"}),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Removed Columns",{{"Is_International", type logical}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Changed Type3", {"Transaction_ID", "Customer_ID", "Card_ID", "Merchant_ID", "Transaction_Date", "Transaction_Amount", "Payment_Method", "Transaction_Channel", "Device_Type", "Transaction_Status", "Is_International", "Fraud_Reason", "Merchant_Risk_Level", "Merchant_Category", "Customer_State", "Customer_City", "Merchant_State", "Merchant_City"}, "Attribute", "Value"),
+				    #"Unpivoted Columns1" = Table.UnpivotOtherColumns(#"Unpivoted Columns", {"Transaction_ID", "Customer_ID", "Card_ID", "Merchant_ID", "Transaction_Date", "Transaction_Amount", "Payment_Method", "Transaction_Channel", "Device_Type", "Transaction_Status", "Is_International", "Fraud_Reason", "Merchant_Risk_Level", "Merchant_Category", "Customer_State", "Customer_City", "Merchant_State", "Merchant_City"}, "Attribute.1", "Value.1"),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Unpivoted Columns1",{"Attribute.1", "Value.1"}),
+				    #"Calculated Start of Year" = Table.TransformColumns(#"Removed Columns1",{{"Transaction_Date", Date.StartOfYear, type date}}),
+				    #"Extracted Date" = Table.TransformColumns(#"Calculated Start of Year",{{"Transaction_Date", each Date.From(DateTime.LocalNow()) - _, type duration}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Extracted Date", each [Customer_State] = p_state),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows", each true),
+				    #"Added Conditional Column" = Table.AddColumn(#"Filtered Rows1", "Custom", each if [Customer_City] = "Bikaner" then 21 else if [Customer_City] = "Bengaluru" then 25 else 0),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Added Conditional Column",{"Custom"}),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Columns2", "Index", 0, 1, Int64.Type),
+				    #"Removed Columns3" = Table.RemoveColumns(#"Added Index",{"Index"}),
+				    #"Added Index1" = Table.AddIndexColumn(#"Removed Columns3", "Index", 0, 1, Int64.Type),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Added Index1",{"Index", "Transaction_ID", "Customer_ID", "Card_ID", "Merchant_ID", "Transaction_Date", "Transaction_Amount", "Payment_Method", "Transaction_Channel", "Device_Type", "Transaction_Status", "Is_International", "Fraud_Reason", "Merchant_Risk_Level", "Merchant_Category", "Customer_State", "Customer_City", "Merchant_State", "Merchant_City"}),
+				    #"Added Index2" = Table.AddIndexColumn(#"Reordered Columns", "Index.1", 1, 1, Int64.Type),
+				    #"Removed Columns4" = Table.RemoveColumns(#"Added Index2",{"Index.1"}),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Removed Columns4",{{"Index", Int64.Type}}),
+				    #"Removed Columns5" = Table.RemoveColumns(#"Changed Type4",{"Index"}),
+				    #"Added Index3" = Table.AddIndexColumn(#"Removed Columns5", "Index", 1, 1, Int64.Type),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Added Index3",{"Index", "Transaction_ID", "Customer_ID", "Card_ID", "Merchant_ID", "Transaction_Date", "Transaction_Amount", "Payment_Method", "Transaction_Channel", "Device_Type", "Transaction_Status", "Is_International", "Fraud_Reason", "Merchant_Risk_Level", "Merchant_Category", "Customer_State", "Customer_City", "Merchant_State", "Merchant_City"}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Reordered Columns1", "Index", "Index - Copy"),
+				    #"Removed Columns6" = Table.RemoveColumns(#"Duplicated Column",{"Index - Copy"}),
+				    #"Inserted Uppercased Text" = Table.AddColumn(#"Removed Columns6", "UPPERCASE", each Text.Upper([Customer_State]), type text),
+				    #"Removed Columns7" = Table.RemoveColumns(#"Inserted Uppercased Text",{"UPPERCASE"}),
+				    #"Changed Type5" = Table.TransformColumnTypes(#"Removed Columns7",{{"Is_International", Int64.Type}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type5","CUST","",Replacer.ReplaceText,{"Customer_ID"}),
+				    #"Reordered Columns2" = Table.ReorderColumns(#"Replaced Value",{"Index", "Customer_ID", "Transaction_ID", "Card_ID", "Merchant_ID", "Transaction_Date", "Transaction_Amount", "Payment_Method", "Transaction_Channel", "Device_Type", "Transaction_Status", "Is_International", "Fraud_Reason", "Merchant_Risk_Level", "Merchant_Category", "Customer_State", "Customer_City", "Merchant_State", "Merchant_City"}),
+				    #"Inserted Is Even" = Table.AddColumn(#"Reordered Columns2", "Is Even", each Number.IsEven([Index]), type logical),
+				    #"Removed Columns8" = Table.RemoveColumns(#"Inserted Is Even",{"Is Even"}),
+				    #"Inserted Is Even1" = Table.AddColumn(#"Removed Columns8", "Is Even", each Number.IsEven([Index]), type logical),
+				    #"Reordered Columns3" = Table.ReorderColumns(#"Inserted Is Even1",{"Index", "Is Even", "Customer_ID", "Transaction_ID", "Card_ID", "Merchant_ID", "Transaction_Date", "Transaction_Amount", "Payment_Method", "Transaction_Channel", "Device_Type", "Transaction_Status", "Is_International", "Fraud_Reason", "Merchant_Risk_Level", "Merchant_Category", "Customer_State", "Customer_City", "Merchant_State", "Merchant_City"}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Reordered Columns3", each true),
+				    #"Removed Columns9" = Table.RemoveColumns(#"Filtered Rows2",{"Is Even"}),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Removed Columns9", "Customer_ID", "Customer_ID - Copy"),
+				    #"Removed Columns10" = Table.RemoveColumns(#"Duplicated Column1",{"Customer_ID - Copy"}),
+				    #"Changed Type6" = Table.TransformColumnTypes(#"Removed Columns10",{{"Is_International", Int64.Type}}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(Table.TransformColumnTypes(#"Changed Type6", {{"Transaction_Amount", type text}}, "en-IN"), "Transaction_Amount", Splitter.SplitTextByDelimiter(".", QuoteStyle.Csv), {"Transaction_Amount.1", "Transaction_Amount.2"}),
+				    #"Changed Type7" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Transaction_Amount.1", Int64.Type}, {"Transaction_Amount.2", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type7",{{"Transaction_Amount.1", "Amount_rupees"}, {"Transaction_Amount.2", "Amount_paisa"}}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Renamed Columns",null,0,Replacer.ReplaceValue,{"Amount_paisa"}),
+				    #"Merged Columns" = Table.CombineColumns(Table.TransformColumnTypes(#"Replaced Value1", {{"Amount_rupees", type text}, {"Amount_paisa", type text}}, "en-IN"),{"Amount_rupees", "Amount_paisa"},Combiner.CombineTextByDelimiter(".", QuoteStyle.None),"Merged"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Merged Columns",{{"Merged", "Amount"}}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Renamed Columns1","None","No Damage",Replacer.ReplaceText,{"Fraud_Reason"}),
+				    #"Changed Type8" = Table.TransformColumnTypes(#"Replaced Value2",{{"Is_International", type logical}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Changed Type8", {"Transaction_ID"}),
+				    #"Duplicated Column2" = Table.DuplicateColumn(#"Removed Duplicates", "Amount", "Amount - Copy"),
+				    #"Reordered Columns4" = Table.ReorderColumns(#"Duplicated Column2",{"Index", "Customer_ID", "Transaction_ID", "Card_ID", "Merchant_ID", "Transaction_Date", "Amount", "Amount - Copy", "Payment_Method", "Transaction_Channel", "Device_Type", "Transaction_Status", "Is_International", "Fraud_Reason", "Merchant_Risk_Level", "Merchant_Category", "Customer_State", "Customer_City", "Merchant_State", "Merchant_City"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Reordered Columns4",{{"Amount - Copy", "range0f amount"}}),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Renamed Columns2", "Custom", each if [range0f amount] = "500" then "Small" else if [range0f amount] = "1000" then "moderate" else if [range0f amount] = "10000" then "Big" else null),
+				    #"Reordered Columns5" = Table.ReorderColumns(#"Added Conditional Column1",{"Index", "Customer_ID", "Transaction_ID", "Card_ID", "Merchant_ID", "Transaction_Date", "Amount", "range0f amount", "Custom", "Payment_Method", "Transaction_Channel", "Device_Type", "Transaction_Status", "Is_International", "Fraud_Reason", "Merchant_Risk_Level", "Merchant_Category", "Customer_State", "Customer_City", "Merchant_State", "Merchant_City"}),
+				    #"Removed Columns11" = Table.RemoveColumns(#"Reordered Columns5",{"Custom", "range0f amount"}),
+				    #"Changed Type9" = Table.TransformColumnTypes(#"Removed Columns11",{{"Index", Int64.Type}}),
+				    #"Reordered Columns6" = Table.ReorderColumns(#"Changed Type9",{"Index", "Customer_ID", "Transaction_ID", "Card_ID", "Merchant_ID", "Amount", "Transaction_Date", "Payment_Method", "Transaction_Channel", "Device_Type", "Transaction_Status", "Is_International", "Fraud_Reason", "Merchant_Risk_Level", "Merchant_Category", "Customer_State", "Customer_City", "Merchant_State", "Merchant_City"}),
+				    #"Split Column by Delimiter1" = Table.SplitColumn(#"Reordered Columns6", "Amount", Splitter.SplitTextByDelimiter(".", QuoteStyle.None), {"Amount.1", "Amount.2"}),
+				    #"Changed Type10" = Table.TransformColumnTypes(#"Split Column by Delimiter1",{{"Amount.1", Int64.Type}, {"Amount.2", Int64.Type}}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Changed Type10",{{"Amount.1", "Amount in Rupee"}, {"Amount.2", "Amount in Paisa"}}),
+				    #"Removed Columns12" = Table.RemoveColumns(#"Renamed Columns3",{"Index"}),
+				    #"Added Index4" = Table.AddIndexColumn(#"Removed Columns12", "Index", 1, 1, Int64.Type),
+				    #"Reordered Columns7" = Table.ReorderColumns(#"Added Index4",{"Index", "Customer_ID", "Transaction_ID", "Card_ID", "Merchant_ID", "Amount in Rupee", "Amount in Paisa", "Transaction_Date", "Payment_Method", "Transaction_Channel", "Device_Type", "Transaction_Status", "Is_International", "Fraud_Reason", "Merchant_Risk_Level", "Merchant_Category", "Customer_State", "Customer_City", "Merchant_State", "Merchant_City"}),
+				    #"Changed Type11" = Table.TransformColumnTypes(#"Reordered Columns7",{{"Merchant_State", type text}})
+				in
+				    #"Changed Type11"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

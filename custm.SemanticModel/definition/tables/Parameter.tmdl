@@ -1,0 +1,51 @@
+table Parameter
+	lineageTag: b703ad84-4b8c-433f-ab83-a32f1d76b2da
+
+	column Parameter
+		lineageTag: ac8c1f3a-e6af-4171-a9ec-c968decad825
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: f055db69-d970-4cd3-9a9d-a69a5d53688d
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: a524e53e-c9ef-4d56-b6ea-329e27122b1c
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter = calculated
+		mode: import
+		source =
+				{
+				    ("City", NAMEOF('Cusmtomer_data'[City]), 0),
+				    ("Occupation", NAMEOF('Cusmtomer_data'[Occupation]), 1),
+				    ("State", NAMEOF('Cusmtomer_data'[State]), 2),
+				    ("Year", NAMEOF('Cusmtomer_data'[Customer_Since].[Year]), 3),
+				    ("Month", NAMEOF('Cusmtomer_data'[Customer_Since].[Month]), 4)
+				}
+
+	annotation PBI_Id = 05b22b3016e94302bb5bae0030a64519
+

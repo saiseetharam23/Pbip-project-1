@@ -1,0 +1,54 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainerMobileState/2.7.0/schema.json",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 5002,
+    "height": 40,
+    "width": 323.99999999999994,
+    "tabOrder": 5002
+  },
+  "objects": {
+    "general": [
+      {
+        "properties": {
+          "paragraphs": [
+            {
+              "textRuns": [
+                {
+                  "value": "Holidays Report",
+                  "textStyle": {
+                    "fontWeight": "bold",
+                    "fontSize": "8pt"
+                  }
+                }
+              ],
+              "horizontalTextAlignment": "center"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "visualContainerObjects": {
+    "title": [],
+    "subTitle": [],
+    "spacing": [
+      {
+        "properties": {
+          "spaceAbovePlotArea": {
+            "expr": {
+              "Literal": {
+                "Value": "3D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [],
+    "padding": [],
+    "border": [],
+    "dropShadow": []
+  }
+}

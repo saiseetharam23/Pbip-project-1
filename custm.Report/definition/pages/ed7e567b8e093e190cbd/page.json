@@ -1,0 +1,49 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ed7e567b8e093e190cbd",
+  "displayName": "Fraud & Risk",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2f6e15d025de5d81d2a5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Transaction_Data_250k"
+              }
+            },
+            "Property": "Transaction_Status"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "9057f95f9b530bdbce35",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "c98ba809c628b19bd4c0",
+        "boundFilter": "2f6e15d025de5d81d2a5",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Transaction_Data_250k"
+              }
+            },
+            "Property": "Transaction_Status"
+          }
+        }
+      }
+    ],
+    "referenceScope": "CrossReport",
+    "acceptsFilterContext": "None"
+  }
+}

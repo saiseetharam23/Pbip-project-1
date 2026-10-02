@@ -1,0 +1,14 @@
+relationship 907a54e5-8101-4317-bdf2-488e85eeae19
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Cusmtomer_data.Customer_Since
+	toColumn: LocalDateTable_bfcb79ce-5d14-4596-8e4e-7002ef3ae262.Date
+
+relationship 891bab87-d4f3-85c1-b874-3c6868c39f6d
+	fromColumn: emp.id
+	toColumn: sai-imp.id
+
+relationship 60c0dc99-a3d6-4acf-8858-7bae53b96f69
+	joinOnDateBehavior: datePartOnly
+	fromColumn: publicholidays.date
+	toColumn: LocalDateTable_98c29925-be18-4932-9bfa-fa9b65dd668c.Date
+

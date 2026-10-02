@@ -1,0 +1,7 @@
+role India
+	modelPermission: read
+
+	tablePermission publicholidays = [countryOrRegion] == "India"
+
+	annotation PBI_Id = 4a831a6769a046598bfbffd4bdac90d1
+

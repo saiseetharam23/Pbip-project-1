@@ -1,0 +1,7 @@
+role England
+	modelPermission: read
+
+	tablePermission publicholidays = [countryOrRegion] == "England"
+
+	annotation PBI_Id = 20c4f604e6d04553abbccad7a9f07f67
+

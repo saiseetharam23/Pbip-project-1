@@ -1,0 +1,365 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Bar",
+  "name": "b4384159eb2545de7504",
+  "options": {
+    "targetVisualNames": [
+      "e1cc8fda40c1d0c25735"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "868ae98d04d2bbcb8e4c",
+    "sections": {
+      "868ae98d04d2bbcb8e4c": {
+        "visualContainers": {
+          "e1cc8fda40c1d0c25735": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "afafc66761a18ee0c42d",
+                  "type": "TopN",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "subquery",
+                        "Expression": {
+                          "Subquery": {
+                            "Query": {
+                              "Version": 2,
+                              "From": [
+                                {
+                                  "Name": "c",
+                                  "Entity": "Cusmtomer_data",
+                                  "Type": 0
+                                }
+                              ],
+                              "Select": [
+                                {
+                                  "HierarchyLevel": {
+                                    "Expression": {
+                                      "Hierarchy": {
+                                        "Expression": {
+                                          "PropertyVariationSource": {
+                                            "Expression": {
+                                              "SourceRef": {
+                                                "Source": "c"
+                                              }
+                                            },
+                                            "Name": "Variation",
+                                            "Property": "Customer_Since"
+                                          }
+                                        },
+                                        "Hierarchy": "Date Hierarchy"
+                                      }
+                                    },
+                                    "Level": "Year"
+                                  },
+                                  "Name": "field"
+                                }
+                              ],
+                              "OrderBy": [
+                                {
+                                  "Direction": 2,
+                                  "Expression": {
+                                    "Aggregation": {
+                                      "Expression": {
+                                        "HierarchyLevel": {
+                                          "Expression": {
+                                            "Hierarchy": {
+                                              "Expression": {
+                                                "PropertyVariationSource": {
+                                                  "Expression": {
+                                                    "SourceRef": {
+                                                      "Source": "c"
+                                                    }
+                                                  },
+                                                  "Name": "Variation",
+                                                  "Property": "Customer_Since"
+                                                }
+                                              },
+                                              "Hierarchy": "Date Hierarchy"
+                                            }
+                                          },
+                                          "Level": "Year"
+                                        }
+                                      },
+                                      "Function": 5
+                                    }
+                                  }
+                                }
+                              ],
+                              "Top": 3
+                            }
+                          }
+                        },
+                        "Type": 2
+                      },
+                      {
+                        "Name": "c",
+                        "Entity": "Cusmtomer_data",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "HierarchyLevel": {
+                                  "Expression": {
+                                    "Hierarchy": {
+                                      "Expression": {
+                                        "PropertyVariationSource": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "c"
+                                            }
+                                          },
+                                          "Name": "Variation",
+                                          "Property": "Customer_Since"
+                                        }
+                                      },
+                                      "Hierarchy": "Date Hierarchy"
+                                    }
+                                  },
+                                  "Level": "Year"
+                                }
+                              }
+                            ],
+                            "Table": {
+                              "SourceRef": {
+                                "Source": "subquery"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Cusmtomer_data"
+                                }
+                              },
+                              "Name": "Variation",
+                              "Property": "Customer_Since"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Year"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7bdfeedf05d7a4255654",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Cusmtomer_data"
+                            }
+                          },
+                          "Property": "Annual_Income"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Cusmtomer_data"
+                                }
+                              },
+                              "Name": "Variation",
+                              "Property": "Customer_Since"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Year"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Cusmtomer_data"
+                                }
+                              },
+                              "Name": "Variation",
+                              "Property": "Customer_Since"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Year"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7dbc11c4adbc47d0c306": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "765d5a4ba82d780750ca",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Cusmtomer_data"
+                            }
+                          },
+                          "Property": "Annual_Income"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0b642befc7663e5ce1c0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cusmtomer_data"
+                        }
+                      },
+                      "Property": "Occupation"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pieChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Cusmtomer_data"
+                            }
+                          },
+                          "Property": "Annual_Income"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Cusmtomer_data"
+                        }
+                      },
+                      "Property": "Occupation"
+                    }
+                  }
+                ]
+              },
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "a09523d03c0ec5280307": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "c125a4cb1a77e06c50d3": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

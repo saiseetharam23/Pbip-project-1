@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "d8a0913ea7646278c3e8",
+  "position": {
+    "x": 1047.6521739130435,
+    "y": 801.391304347826,
+    "z": 6000,
+    "height": 256.971854954837,
+    "width": 323.92931011912555,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Transaction_Data_250k"
+                    }
+                  },
+                  "Property": "Device_Type"
+                }
+              },
+              "queryRef": "Transaction_Data_250k.Device_Type",
+              "nativeQueryRef": "Device_Type",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "isHidden": true
+}

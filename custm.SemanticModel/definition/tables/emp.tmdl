@@ -1,0 +1,77 @@
+table emp
+	lineageTag: 2a00e235-8fd9-4e86-868c-4a2d0a54b1da
+
+	column work
+		dataType: string
+		lineageTag: 1e5ef766-5ed8-48a6-9f3e-72a90ef1fb82
+		summarizeBy: none
+		sourceColumn: work
+
+		annotation SummarizationSetBy = Automatic
+
+	column A
+		dataType: string
+		lineageTag: 1d13ddb4-4e26-4898-b542-6046fc753cbd
+		summarizeBy: none
+		sourceColumn: A
+
+		annotation SummarizationSetBy = Automatic
+
+	column B
+		dataType: string
+		lineageTag: f1f51653-9fe8-42c4-ad98-d82759c99d2d
+		summarizeBy: none
+		sourceColumn: B
+
+		annotation SummarizationSetBy = Automatic
+
+	column C
+		dataType: string
+		lineageTag: 1dfde46a-bbdc-4418-9731-12cd33213230
+		summarizeBy: none
+		sourceColumn: C
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		lineageTag: 098ac4b1-3f07-474b-b874-911184d3bffd
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition emp = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WclTSUcrMK0ktygMyTL2VYnUgYkWpufklqUCGkWk2WNAJyE4rzclRKMnMBYsbIIkXpabmJOYlg8SNoeLOQLaCX2Z6RklxRmZaCZBngiRTXKSQklqWmpNfkFoE5JqBpGIB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [person = _t, work = _t, salary = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"person", type text}, {"work", type text}, {"salary", type text}}),
+				    #"Pivoted Column" = Table.Pivot(#"Changed Type", List.Distinct(#"Changed Type"[person]), "person", "salary", List.Count),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Pivoted Column",{{"A", type logical}, {"B", type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type1","0","No",Replacer.ReplaceText,{"B"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","1","Yess",Replacer.ReplaceText,{"B"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","Yess","Yes",Replacer.ReplaceText,{"B"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Replaced Value2",{{"C", type text}}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Changed Type2","0","Not Working",Replacer.ReplaceText,{"C"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","1","Working",Replacer.ReplaceText,{"C"}),
+				    #"Added Index" = Table.AddIndexColumn(#"Replaced Value4", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "id"}}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Renamed Columns",1,11,Replacer.ReplaceValue,{"id"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5",2,12,Replacer.ReplaceValue,{"id"}),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6",3,13,Replacer.ReplaceValue,{"id"}),
+				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value7",4,14,Replacer.ReplaceValue,{"id"}),
+				    #"Replaced Value9" = Table.ReplaceValue(#"Replaced Value8",5,15,Replacer.ReplaceValue,{"id"}),
+				    #"Replaced Value10" = Table.ReplaceValue(#"Replaced Value9",6,16,Replacer.ReplaceValue,{"id"}),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Replaced Value10",{{"work", type text}, {"A", type logical}, {"B", type text}, {"C", type text}, {"id", Int64.Type}}),
+				    #"Capitalized Each Word" = Table.TransformColumns(Table.TransformColumnTypes(#"Changed Type3", {{"A", type text}, {"id", type text}}, "en-IN"),{{"work", Text.Proper, type text}, {"A", Text.Proper, type text}, {"B", Text.Proper, type text}, {"C", Text.Proper, type text}, {"id", Text.Proper, type text}}),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Capitalized Each Word",{{"id", Int64.Type}})
+				in
+				    #"Changed Type4"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

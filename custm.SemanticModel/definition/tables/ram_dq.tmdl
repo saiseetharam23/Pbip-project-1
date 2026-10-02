@@ -1,0 +1,42 @@
+table ram_dq
+	lineageTag: b44405a0-72aa-4bf7-97b5-3e80be02eced
+
+	column id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: ae69e734-48c5-499d-bf76-9ea05018b0bf
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		sourceProviderType: varchar(20)
+		lineageTag: 3e5978eb-816c-4308-9865-960eaac9c709
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column job
+		dataType: string
+		sourceProviderType: varchar(20)
+		lineageTag: 9e720b57-d290-4976-ad16-03307c187f0c
+		summarizeBy: none
+		sourceColumn: job
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ram_dq = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("localhost", "test_db"),
+				    dbo_ram = Source{[Schema="dbo",Item="ram"]}[Data]
+				in
+				    dbo_ram
+
+	changedProperty = Name
+

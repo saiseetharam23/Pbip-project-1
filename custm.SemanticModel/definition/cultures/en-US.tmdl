@@ -1,0 +1,50 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "cusmtomer_data.city": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Cusmtomer_data",
+			          "ConceptualProperty": "City"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "cusmtomer_data.occupation": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Cusmtomer_data",
+			          "ConceptualProperty": "Occupation"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Occupation": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "cusmtomer_data.state": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Cusmtomer_data",
+			          "ConceptualProperty": "State"
+			        }
+			      },
+			      "State": "Generated"
+			    }
+			  }
+			}
+		contentType: json
+

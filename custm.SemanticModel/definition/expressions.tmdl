@@ -1,0 +1,7 @@
+expression p_state = "Tamil Nadu" meta [IsParameterQuery=true, List={"Telangana", "Tamil Nadu"}, DefaultValue="Telangana", Type="Text", IsParameterQueryRequired=true]
+	lineageTag: ba307fac-6175-4428-8a9c-1a1f85fa9929
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

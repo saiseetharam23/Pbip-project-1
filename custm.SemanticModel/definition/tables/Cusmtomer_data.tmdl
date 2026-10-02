@@ -1,0 +1,141 @@
+table Cusmtomer_data
+	lineageTag: 84766e0a-29d1-4e25-b7c1-6226c7dc8c6f
+
+	measure Total_Volume = SUM(Transaction_Data_250k[Amount])
+		formatString: 0
+		lineageTag: c8d0ddae-3db2-439b-a126-83af25996699
+
+	column Customer_ID
+		dataType: string
+		lineageTag: 4a350ef3-728f-442d-88fa-b3473eb8f2e1
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name
+		dataType: string
+		lineageTag: 357afba3-f468-41bd-80e7-53819e35eace
+		summarizeBy: none
+		sourceColumn: Customer_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 5f8ed02c-4c09-4c0c-b7ae-f8de14e1703d
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 7945a39c-1429-4889-8957-dc8afe3bd4ae
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Marital_Status
+		dataType: string
+		lineageTag: 68150b51-e1ed-465e-a968-9162e02329d1
+		summarizeBy: none
+		sourceColumn: Marital_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Occupation
+		dataType: string
+		lineageTag: 4efba31a-ee0e-4305-9d0a-558c5fbede36
+		summarizeBy: none
+		sourceColumn: Occupation
+
+		annotation SummarizationSetBy = Automatic
+
+	column Annual_Income
+		dataType: int64
+		formatString: 0
+		lineageTag: 8db910cf-7d19-476b-b3ce-3dad14f42da9
+		summarizeBy: sum
+		sourceColumn: Annual_Income
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Segment
+		dataType: string
+		lineageTag: 324c67fe-8192-4682-ad36-ba1bb1fe4be7
+		summarizeBy: none
+		sourceColumn: Customer_Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 7d41c6c3-dcca-4e77-bc1f-53c65381fa4a
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: a0ebfb40-76f1-43d6-9d9e-c2e969e46432
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Type
+		dataType: string
+		lineageTag: 8da6ca90-87ca-43f5-bd2f-c47014ffda64
+		summarizeBy: none
+		sourceColumn: Account_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Since
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 06f43bfe-4112-4260-bdfe-3e578311e535
+		summarizeBy: none
+		sourceColumn: Customer_Since
+
+		variation Variation
+			isDefault
+			relationship: 907a54e5-8101-4317-bdf2-488e85eeae19
+			defaultHierarchy: LocalDateTable_bfcb79ce-5d14-4596-8e4e-7002ef3ae262.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Year.1'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2cd5d3d1-9988-44ba-a1e7-65954774718f
+		summarizeBy: sum
+		sourceColumn: Year.1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Cusmtomer_data = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Zidio project\archive\Cusmtomer_data.csv"),[Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Customer_ID", type text}, {"Customer_Name", type text}, {"Gender", type text}, {"Age", Int64.Type}, {"Marital_Status", type text}, {"Occupation", type text}, {"Annual_Income", Int64.Type}, {"Customer_Segment", type text}, {"State", type text}, {"City", type text}, {"Account_Type", type text}, {"Customer_Since", type date}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","CUST","",Replacer.ReplaceText,{"Customer_ID"}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Replaced Value", "Customer_Since", "Customer_Since - Copy"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Duplicated Column",{{"Customer_Since - Copy", "Year"}}),
+				    #"Split Column by Positions" = Table.SplitColumn(Table.TransformColumnTypes(#"Renamed Columns", {{"Year", type text}}, "en-IN"), "Year", Splitter.SplitTextByPositions({6}), {"Year.1"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Positions",{{"Year.1", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

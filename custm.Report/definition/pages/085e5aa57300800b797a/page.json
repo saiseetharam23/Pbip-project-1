@@ -1,0 +1,47 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "085e5aa57300800b797a",
+  "displayName": "Geographic & Merchant",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "870ff6fa2e7920808002",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Transaction_Data_250k"
+              }
+            },
+            "Property": "Transaction_Status"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "c3191843955aeeaeacd2",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "001c2f2a38bac55605e6",
+        "boundFilter": "870ff6fa2e7920808002",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Transaction_Data_250k"
+              }
+            },
+            "Property": "Transaction_Status"
+          }
+        }
+      }
+    ]
+  }
+}
