@@ -28,5 +28,5 @@ jobs:
           curl -X POST \
           -H "Authorization: Bearer $ACCESS_TOKEN" \
           -H "Content-Type: multipart/form-data" \
-          -F "file=@custm.pbip" \
+          -F "file=@reports/custm.pbip" \
           "https://api.powerbi.com/v1.0/myorg/groups/${{ secrets.PBI_WORKSPACE_ID }}/imports?datasetDisplayName=Pbip-project-1"
